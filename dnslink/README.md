@@ -6,6 +6,18 @@ For more information about dnslink, see
 
 - This note: https://github.com/jbenet/random-ideas/issues/28
 
+## Install
+
+Compile with Go
+
+```sh
+go get -u github.com/jbenet/go-dnslink/dnslink
+```
+
+Or download prebuilt binaries from Gobuilder:
+
+- <https://gobuilder.me/github.com/jbenet/go-dnslink/dnslink>
+
 ## Usage
 
 ```
