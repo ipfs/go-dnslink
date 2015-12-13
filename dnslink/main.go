@@ -33,27 +33,48 @@ func main() {
 }
 
 func run(args []string) error {
-	if len(args) < 1 {
+	if len(args) < 1 || hasHelp(args) {
 		fmt.Print(usage)
 		return nil
 	}
 
-	many := len(args) > 1
-	for _, domain := range args {
-		if many {
-			fmt.Print(domain, ": ")
+	if len(args) == 1 {
+		return printLink(args[0])
+	}
+	return printLinks(args)
+}
+
+func hasHelp(args []string) bool {
+	for _, arg := range args {
+		if arg == "--help" || arg == "-h" {
+			return true
 		}
+	}
+	return false
+}
+
+// print a single link
+func printLink(domain string) error {
+	link, err := dnslink.Resolve(domain)
+	if err != nil {
+		return err
+	}
+	fmt.Println(link)
+	return nil
+}
+
+// print multiple links.
+// errors printed as output, and do not fail the entire process.
+func printLinks(domains []string) error {
+	for _, domain := range domains {
+		fmt.Print(domain, ": ")
 
 		result, err := dnslink.Resolve(domain)
 		if result != "" {
 			fmt.Print(result)
 		}
 		if err != nil {
-			if !many {
-				return err
-			} else {
-				fmt.Print("error: ", err)
-			}
+			fmt.Print("error: ", err)
 		}
 		fmt.Println()
 	}
