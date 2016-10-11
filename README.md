@@ -1,9 +1,28 @@
-# dnslink resolution in go-ipfs
+# go-dnslink
 
-Package dnslink implements a dns link resolver. dnslink is a basic
-standard for placing traversable links in dns itself. See dnslink.info
+[![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
+[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
+[![](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](http://ipfs.io/)
 
-A dnslink is a path link in a dns TXT record, like this:
+> dnslink resolution in go-ipfs
+
+## Table of Contents
+
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+  - [As a library](#as-a-library)
+  - [As a commandline tool](#as-a-commandline-tool)
+- [Contribute](#contribute)
+  - [Want to hack on IPFS?](#want-to-hack-on-ipfs)
+- [License](#license)
+
+## Background
+
+Package dnslink implements a DNS link resolver. dnslink is a basic
+standard for placing traversable links in DNS itself. See dnslink.info
+
+A dnslink is a path link in a DNS TXT record, like this:
 
 ```
 dnslink=/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
@@ -16,7 +35,7 @@ For example:
 ipfs.io.  120   IN  TXT  dnslink=/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
 ```
 
-This package eases resolving and working with thse dns links. For example:
+This package eases resolving and working with thse DNS links. For example:
 
 ```go
 import (
@@ -53,6 +72,12 @@ dnslink.ResolveN("foo.com", 2)          // "/dns/long.test.baz.it/b/a/r/f/o/o/"
 dnslink.Resolve("foo.com")              // "/b/a/z/b/a/r/f/o/o"
 ```
 
+## Install
+
+```sh
+go get ipfs/go-dnslink
+```
+
 ## Usage
 
 ### As a library
@@ -83,3 +108,18 @@ Check out [the commandline tool](dnslink/), which works like this:
 > dnslink ipfs.io
 /ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
 ```
+
+## Contribute
+
+Feel free to join in. All welcome. Open an [issue](https://github.com/ipfs/go-dnslink/issues)!
+
+This repository falls under the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
+
+### Want to hack on IPFS?
+
+[![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](https://github.com/ipfs/community/blob/master/contributing.md)
+
+## License
+
+[MIT](LICENSE) © Juan Benet-Batiz
+
