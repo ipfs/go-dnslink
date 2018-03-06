@@ -75,7 +75,7 @@ dnslink.Resolve("foo.com")              // "/b/a/z/b/a/r/f/o/o"
 ## Install
 
 ```sh
-go get ipfs/go-dnslink
+go get github.com/ipfs/go-dnslink
 ```
 
 ## Usage
