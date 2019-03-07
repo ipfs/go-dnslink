@@ -39,7 +39,7 @@ This package eases resolving and working with thse DNS links. For example:
 
 ```go
 import (
-  dnslink "github.com/jbenet/go-dnslink"
+  dnslink "github.com/ipfs/go-dnslink"
 )
 
 link, err := dnslink.Resolve("ipfs.io")
@@ -87,7 +87,7 @@ import (
   log
   fmt
 
-  dnslink "github.com/jbenet/go-dnslink"
+  dnslink "github.com/ipfs/go-dnslink"
 )
 
 func main() {

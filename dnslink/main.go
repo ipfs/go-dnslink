@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	dnslink "github.com/jbenet/go-dnslink"
+	dnslink "github.com/ipfs/go-dnslink"
 )
 
 var usage = `dnslink - resolve dns links in TXT records

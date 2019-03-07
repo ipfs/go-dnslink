@@ -11,12 +11,8 @@ For more information about dnslink, see
 Compile with Go
 
 ```sh
-go get -u github.com/jbenet/go-dnslink/dnslink
+go get -u github.com/ipfs/go-dnslink/dnslink
 ```
-
-Or download prebuilt binaries from Gobuilder:
-
-- <https://gobuilder.me/github.com/jbenet/go-dnslink/dnslink>
 
 ## Usage
 
