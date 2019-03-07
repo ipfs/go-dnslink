@@ -14,7 +14,7 @@ For example:
 This package eases resolving and working with thse dns links. For example:
 
   import (
-    dnslink "github.com/jbenet/go-dnslink"
+    dnslink "github.com/ipfs/go-dnslink"
   )
 
   link, err := dnslink.Resolve("ipfs.io")
