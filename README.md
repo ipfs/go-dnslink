@@ -19,8 +19,8 @@
 
 ## Background
 
-Package dnslink implements a DNS link resolver. dnslink is a basic
-standard for placing traversable links in DNS itself. See dnslink.info
+Package dnslink implements a DNSLink resolver. DNSLink is a basic
+standard for placing traversable links in DNS itself, with detailed documentation and specifications at [dnslink.io](http://dnslink.io/)
 
 A dnslink is a path link in a DNS TXT record, like this:
 
