@@ -51,7 +51,7 @@ import (
 	"path"
 	"strings"
 
-	isd "github.com/jbenet/go-is-domain"
+	isd "github.com/RTradeLtd/go-is-domain"
 )
 
 // DefaultDepthLimit controls how many dns links to resolve through before
