@@ -4,3 +4,5 @@ github.com/RTradeLtd/go-is-domain v0.0.0-20190314212725-64de143154fd h1:YI55A2P3
 github.com/RTradeLtd/go-is-domain v0.0.0-20190314212725-64de143154fd/go.mod h1:iEcUj2j67LisJCZfmOsQqRGzquLulqkvFZxk7RdEcB0=
 github.com/RTradeLtd/go-is-domain v0.0.0-20190314220638-cf2b31e44233 h1:zksqZpulBkesIkXlE1WfuNaOJMLvu1hoH805A2o6OwA=
 github.com/RTradeLtd/go-is-domain v0.0.0-20190314220638-cf2b31e44233/go.mod h1:iEcUj2j67LisJCZfmOsQqRGzquLulqkvFZxk7RdEcB0=
+github.com/RTradeLtd/go-is-domain v0.0.0-20190314223742-baee279174e3 h1:Ef267grJE8VXb+3zenWiRzvAs6ySBdPig4Pt8/GVfb0=
+github.com/RTradeLtd/go-is-domain v0.0.0-20190314223742-baee279174e3/go.mod h1:iEcUj2j67LisJCZfmOsQqRGzquLulqkvFZxk7RdEcB0=
