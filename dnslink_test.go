@@ -17,6 +17,27 @@ func (m *mockDNS) lookupTXT(name string) (txt []string, err error) {
 	return txt, nil
 }
 
+func TestDNSLink(t *testing.T) {
+	entries := make(map[string][]string)
+	entries["ipfs.io"] = []string{"ipfs.io"}
+	entries["dnslink"] = []string{"_dnslink.libp2p.io"}
+	m := &mockDNS{
+		entries: entries,
+	}
+	if _, err := m.lookupTXT("ipfs.io"); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := Resolve("ipfs.io"); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := m.lookupTXT("dnslink"); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := Resolve("_dnslink.libp2p.io"); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestDnsLinkParsing(t *testing.T) {
 	goodEntries := [][]string{
 		[]string{"/dns/foo.com", "foo.com", ""},

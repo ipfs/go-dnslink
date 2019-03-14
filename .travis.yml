@@ -1,0 +1,19 @@
+language: go
+go:
+  - "1.12"
+
+env: GO111MODULE=on
+
+install:
+  - go mod download
+
+before_script:
+  - go vet ./...
+  - go build ./...
+  - go test -run xxxx ./...
+
+script:
+  - go test -race -short -coverprofile=coverage.txt ./...
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
