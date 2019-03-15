@@ -166,7 +166,7 @@ func (r *Resolver) ResolveN(domain string, depth int) (link string, err error) {
 		domain = d
 		tail = rest + tail
 	}
-	return "/dns/" + domain + tail, ErrResolveLimit
+	return "/dnslink/" + domain + tail, ErrResolveLimit
 }
 
 // resolveOnce implements resolver.
