@@ -152,9 +152,8 @@ func (r *Resolver) ResolveN(domain string, depth int) (link string, err error) {
 		if err != nil {
 			return "", err
 		}
-
-		// if does not have /dns/ as a prefix, done.
-		if !strings.HasPrefix(link, "/dns/") {
+		// if does not have /dnslink/ as a prefix, done.
+		if !strings.HasPrefix(link, "/dnslink/") {
 			return link + tail, nil // done
 		}
 
@@ -173,16 +172,13 @@ func (r *Resolver) ResolveN(domain string, depth int) (link string, err error) {
 // resolveOnce implements resolver.
 func (r *Resolver) resolveOnce(domain string) (p string, err error) {
 	r.setDefaults()
-
 	if !isd.IsDomain(domain) {
 		return "", ErrInvalidDomain
 	}
-
 	txt, err := r.lookupTXT(domain)
 	if err != nil {
 		return "", err
 	}
-
 	err = ErrResolveFailed
 	for _, t := range txt {
 		p, err = ParseTXT(t)
@@ -217,7 +213,7 @@ func ParseTXT(txt string) (string, error) {
 // and ErrInvalidDomain if the domain is not valid.
 func ParseLinkDomain(txt string) (string, string, error) {
 	parts := strings.SplitN(txt, "/", 4)
-	if len(parts) < 3 || parts[0] != "" || parts[1] != "dns" {
+	if len(parts) < 3 || parts[0] != "" || parts[1] != "dnslink" {
 		return "", "", ErrInvalidDnslink
 	}
 
