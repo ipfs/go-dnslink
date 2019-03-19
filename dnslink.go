@@ -47,6 +47,7 @@ package dnslink
 
 import (
 	"errors"
+	"fmt"
 	"net"
 	"path"
 	"strings"
@@ -175,9 +176,17 @@ func (r *Resolver) resolveOnce(domain string) (p string, err error) {
 	if !isd.IsDomain(domain) {
 		return "", ErrInvalidDomain
 	}
-	txt, err := r.lookupTXT(domain)
+	var txt []string
+	// first attempt lookup on _dnslink.domain
+	// if this fails, we'll then do a generalized
+	// search against all TXT records for given domain
+	// and if that fails, return an error
+	txt, err = r.lookupTXT(fmt.Sprintf("_dnslink.%s", domain))
 	if err != nil {
-		return "", err
+		txt, err = r.lookupTXT(domain)
+		if err != nil {
+			return "", err
+		}
 	}
 	err = ErrResolveFailed
 	for _, t := range txt {
