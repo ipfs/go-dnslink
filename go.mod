@@ -2,4 +2,4 @@ module github.com/ipfs/go-dnslink
 
 go 1.11
 
-require github.com/RTradeLtd/go-is-domain v0.0.0-20190314223742-baee279174e3
+require github.com/jbenet/go-is-domain v1.0.2
