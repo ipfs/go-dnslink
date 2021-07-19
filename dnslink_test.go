@@ -19,10 +19,10 @@ func (m *mockDNS) lookupTXT(name string) (txt []string, err error) {
 
 func TestDnsLinkParsing(t *testing.T) {
 	goodEntries := [][]string{
-		[]string{"/dns/foo.com", "foo.com", ""},
-		[]string{"/dns/foo.com/bar/baz", "foo.com", "/bar/baz"},
-		[]string{"/dns/bar.com", "bar.com", ""},
-		[]string{"/dns/baz.test.it/bar/baz", "baz.test.it", "/bar/baz"},
+		{"/dns/foo.com", "foo.com", ""},
+		{"/dns/foo.com/bar/baz", "foo.com", "/bar/baz"},
+		{"/dns/bar.com", "bar.com", ""},
+		{"/dns/baz.test.it/bar/baz", "baz.test.it", "/bar/baz"},
 	}
 
 	badEntries := []string{
@@ -99,17 +99,17 @@ func TestDnsEntryParsing(t *testing.T) {
 func newMockDNS() *mockDNS {
 	return &mockDNS{
 		entries: map[string][]string{
-			"foo.com":            []string{"dnslink=/dns/bar.com/foo/f/o/o"},
-			"bar.com":            []string{"dnslink=/dns/test.it.baz.com/bar/b/a/r"},
-			"test.it.baz.com":    []string{"dnslink=/baz/b/a/z"},
-			"ipfs.example.com":   []string{"dnslink=/ipfs/QmY3hE8xgFCjGcz6PHgnvJz5HZi1BaKRfPkn1ghZUcYMjD"},
-			"dns1.example.com":   []string{"dnslink=/dns/ipfs.example.com"},
-			"dns2.example.com":   []string{"dnslink=/dns/dns1.example.com"},
-			"equals.example.com": []string{"dnslink=/ipfs/QmY3hE8xgFCjGcz6PHgnvJz5HZi1BaKRfPkn1ghZUcYMjD/=equals"},
-			"loop1.example.com":  []string{"dnslink=/dns/loop2.example.com"},
-			"loop2.example.com":  []string{"dnslink=/dns/loop1.example.com"},
-			"bad.example.com":    []string{"dnslink="},
-			"multi.example.com": []string{
+			"foo.com":            {"dnslink=/dns/bar.com/foo/f/o/o"},
+			"bar.com":            {"dnslink=/dns/test.it.baz.com/bar/b/a/r"},
+			"test.it.baz.com":    {"dnslink=/baz/b/a/z"},
+			"ipfs.example.com":   {"dnslink=/ipfs/QmY3hE8xgFCjGcz6PHgnvJz5HZi1BaKRfPkn1ghZUcYMjD"},
+			"dns1.example.com":   {"dnslink=/dns/ipfs.example.com"},
+			"dns2.example.com":   {"dnslink=/dns/dns1.example.com"},
+			"equals.example.com": {"dnslink=/ipfs/QmY3hE8xgFCjGcz6PHgnvJz5HZi1BaKRfPkn1ghZUcYMjD/=equals"},
+			"loop1.example.com":  {"dnslink=/dns/loop2.example.com"},
+			"loop2.example.com":  {"dnslink=/dns/loop1.example.com"},
+			"bad.example.com":    {"dnslink="},
+			"multi.example.com": {
 				"some stuff",
 				"dnslink=/dns/dns1.example.com",
 				"masked dnslink=/dns/example.invalid",
