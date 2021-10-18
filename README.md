@@ -1,3 +1,8 @@
+# ⚠️ Deprecated in favor of [dnslink-std/go](https://github.com/dnslink-std/go)
+
+- 👉  this project is no longer maintained, greenfield projects should use  [dnslink-std/go](https://github.com/dnslink-std/go)
+- we will convert this repo to a thin arapper around [dnslink-std/go](https://github.com/dnslink-std/go) at some point – see [#15](https://github.com/ipfs/go-dnslink/issues/15)
+
 # go-dnslink
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
