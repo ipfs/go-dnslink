@@ -4,44 +4,43 @@ standard for placing traversable links in dns itself. See dnslink.info
 
 A dnslink is a path link in a dns TXT record, like this:
 
-  dnslink=/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
+	dnslink=/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
 
 For example:
 
-  > dig TXT ipfs.io
-  ipfs.io.  120   IN  TXT  dnslink=/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
+	> dig TXT ipfs.io
+	ipfs.io.  120   IN  TXT  dnslink=/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy
 
 This package eases resolving and working with thse dns links. For example:
 
-  import (
-    dnslink "github.com/ipfs/go-dnslink"
-  )
+	import (
+	  dnslink "github.com/ipfs/go-dnslink"
+	)
 
-  link, err := dnslink.Resolve("ipfs.io")
-  // link = "/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy"
+	link, err := dnslink.Resolve("ipfs.io")
+	// link = "/ipfs/QmR7tiySn6vFHcEjBeZNtYGAFh735PJHfEMdVEycj9jAPy"
 
 It even supports recursive resolution. Suppose you have three domains with
 dnslink records like these:
 
-  > dig TXT foo.com
-  foo.com.  120   IN  TXT  dnslink=/dns/bar.com/f/o/o
-  > dig TXT bar.com
-  bar.com.  120   IN  TXT  dnslink=/dns/long.test.baz.it/b/a/r
-  > dig TXT long.test.baz.it
-  long.test.baz.it.  120   IN  TXT  dnslink=/b/a/z
+	> dig TXT foo.com
+	foo.com.  120   IN  TXT  dnslink=/dns/bar.com/f/o/o
+	> dig TXT bar.com
+	bar.com.  120   IN  TXT  dnslink=/dns/long.test.baz.it/b/a/r
+	> dig TXT long.test.baz.it
+	long.test.baz.it.  120   IN  TXT  dnslink=/b/a/z
 
 Expect these resolutions:
 
-  dnslink.ResolveN("long.test.baz.it", 0) // "/dns/long.test.baz.it"
-  dnslink.Resolve("long.test.baz.it")     // "/b/a/z"
+	dnslink.ResolveN("long.test.baz.it", 0) // "/dns/long.test.baz.it"
+	dnslink.Resolve("long.test.baz.it")     // "/b/a/z"
 
-  dnslink.ResolveN("bar.com", 1)          // "/dns/long.test.baz.it/b/a/r"
-  dnslink.Resolve("bar.com")              // "/b/a/z/b/a/r"
+	dnslink.ResolveN("bar.com", 1)          // "/dns/long.test.baz.it/b/a/r"
+	dnslink.Resolve("bar.com")              // "/b/a/z/b/a/r"
 
-  dnslink.ResolveN("foo.com", 1)          // "/dns/bar.com/f/o/o/"
-  dnslink.ResolveN("foo.com", 2)          // "/dns/long.test.baz.it/b/a/r/f/o/o/"
-  dnslink.Resolve("foo.com")              // "/b/a/z/b/a/r/f/o/o"
-
+	dnslink.ResolveN("foo.com", 1)          // "/dns/bar.com/f/o/o/"
+	dnslink.ResolveN("foo.com", 2)          // "/dns/long.test.baz.it/b/a/r/f/o/o/"
+	dnslink.Resolve("foo.com")              // "/b/a/z/b/a/r/f/o/o"
 */
 package dnslink
 
@@ -196,8 +195,10 @@ func (r *Resolver) resolveOnce(domain string) (p string, err error) {
 
 // ParseTXT parses a TXT record value for a dnslink value.
 // The TXT record must follow the dnslink format:
-//   TXT dnslink=<path>
-//   TXT dnslink=/foo/bar/baz
+//
+//	TXT dnslink=<path>
+//	TXT dnslink=/foo/bar/baz
+//
 // ParseTXT will return ErrInvalidDnslink if parsing fails.
 func ParseTXT(txt string) (string, error) {
 	parts := strings.SplitN(txt, "=", 2)
@@ -210,9 +211,11 @@ func ParseTXT(txt string) (string, error) {
 
 // ParseLinkDomain parses a domain from a dnslink path.
 // The link path must follow the dnslink format:
-//   /dns/<domain>/<path>
-//   /dns/ipfs.io
-//   /dns/ipfs.io/blog/0-hello-worlds
+//
+//	/dns/<domain>/<path>
+//	/dns/ipfs.io
+//	/dns/ipfs.io/blog/0-hello-worlds
+//
 // ParseLinkDomain will return ErrInvalidDnslink if parsing fails,
 // and ErrInvalidDomain if the domain is not valid.
 func ParseLinkDomain(txt string) (string, string, error) {
